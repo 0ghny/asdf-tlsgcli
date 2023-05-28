@@ -2,14 +2,13 @@
 
 # asdf-tlsgcli [![Build](https://github.com/0ghny/asdf-tlsgcli/actions/workflows/build.yml/badge.svg)](https://github.com/0ghny/asdf-tlsgcli/actions/workflows/build.yml) [![Lint](https://github.com/0ghny/asdf-tlsgcli/actions/workflows/lint.yml/badge.svg)](https://github.com/0ghny/asdf-tlsgcli/actions/workflows/lint.yml)
 
-
 [tlsg10x-cli](https://github.com/0ghny/tlsg10x-cli) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
 # Contents
 
-- [asdf-tlsgcli  ](#asdf-tlsgcli--)
+- [asdf-tlsgcli ](#asdf-tlsgcli--)
 - [Contents](#contents)
 - [Dependencies](#dependencies)
 - [Install](#install)
