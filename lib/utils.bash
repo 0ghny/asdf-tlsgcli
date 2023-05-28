@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for tlsg-cli.
 GH_REPO="https://github.com/0ghny/tlsg10x-cli"
 TOOL_NAME="tlsg-cli"
 TOOL_TEST="tlsg-cli --help"
@@ -14,7 +13,6 @@ fail() {
 
 curl_opts=(-fsSL)
 
-# NOTE: You might want to remove this if tlsg-cli is not hosted on GitHub releases.
 if [ -n "${GITHUB_API_TOKEN:-}" ]; then
   curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
 fi
@@ -27,12 +25,10 @@ sort_versions() {
 list_github_tags() {
   git ls-remote --tags --refs "$GH_REPO" |
     grep -o 'refs/tags/.*' | cut -d/ -f3- |
-    sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
+    sed 's/^v//'
 }
 
 list_all_versions() {
-  # TODO: Adapt this. By default we simply list the tag names from GitHub releases.
-  # Change this function if tlsg-cli has other means of determining installable versions.
   list_github_tags
 }
 
@@ -43,7 +39,6 @@ download_release() {
   version="$1"
   filename="$2"
 
-  # TODO: Adapt the release URL convention for tlsg-cli
   url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}_${version}_${platform}_${arch}.tar.gz"
 
   echo "* Downloading $TOOL_NAME release $version ${platform}/${arch}..."
@@ -89,9 +84,9 @@ get_platform() {
 
 get_arch() {
   local -r machine="$(uname -m)"
-  local -r tool_specific_arch_override="ASDF_tlsgcli_OVERWRITE_ARCH"
+  local -r tool_specific_arch_override="ASDF_TLSGCLI_OVERWRITE_ARCH"
 
-  OVERWRITE_ARCH=${!tool_specific_arch_override:-${ASDF_tlsgcli_OVERWRITE_ARCH:-"false"}}
+  OVERWRITE_ARCH=${!tool_specific_arch_override:-${ASDF_TLSGCLI_OVERWRITE_ARCH:-"false"}}
 
   if [[ ${OVERWRITE_ARCH} != "false" ]]; then
     echo "${OVERWRITE_ARCH}"
